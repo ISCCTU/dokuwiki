@@ -1,0 +1,10 @@
+bin/
+conf/
+data/
+deploy
+doku.php
+feed.php
+inc/
+index.php
+install.php
+lib/
