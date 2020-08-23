@@ -1,0 +1,7 @@
+base   partakauth
+author Jan Zipek
+email  jan@zipek.cz
+date   2020-02-29
+name   partak auth
+desc   Authenticate against ParťákNet
+url    https://isc.cvut.cz
