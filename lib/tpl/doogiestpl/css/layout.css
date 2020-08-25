@@ -1,0 +1,293 @@
+/**
+ * Tableless Layout for Doogies Template
+ * Based on DokuWiki default template
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author moraes <moraes@tipos.com.br>
+ * @author Robert Rackl <wiki@doogie.de>
+ * @author Anika Henke <anika@selfthinker.org>
+ */
+
+.dokuwiki div.page {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* -------------- top row --------------- */
+
+.dokuwiki .stylehead {
+    margin: 5px;
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+.dokuwiki .header {
+    border-radius: 20px;
+    background-color: __header_background__;
+    /* the background gradient is in gradients.less */
+    min-height: 120px;
+    min-width: 825px;
+    position: relative;
+    z-index: 0;
+}
+
+.dokuwiki .logo {
+    padding-top: 40px;
+    padding-left: 25px;
+    font-size: 250%;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 2;
+    float: left;
+}
+[dir=rtl] .dokuwiki .logo {
+    padding-left: 0;
+    padding-right: 30px;
+    text-align: right;
+    float: right;
+}
+
+.dokuwiki .logo a {
+    color: __background_alt__ !important;
+    text-decoration: none !important;
+    font-variant: small-caps;
+    letter-spacing: 2pt;
+}
+
+.dokuwiki .actions {
+    padding: 3px 18px 0;
+}
+
+.dokuwiki .header .tools {
+    padding-top: 40px;
+    padding-right: 25px;
+    text-align: right;
+    white-space: nowrap;
+    z-index: 2;
+    float: right;
+}
+[dir=rtl] .dokuwiki .header .tools {
+    padding-right: 0;
+    padding-left: 30px;
+    text-align: left;
+    float: left;
+}
+
+.dokuwiki .pagename {
+    font-size: 200%;
+    font-weight: bolder;
+    color: __background_alt__;
+}
+.dokuwiki.hasLongTitles .pagename {
+    font-size: 100%;
+    margin-bottom: 10px;
+}
+.dokuwiki.hasLongTitles .header .tools {
+    padding-top: 20px;
+}
+
+.dokuwiki .pagename a {
+    color: __border__ !important;
+    text-decoration: none !important;
+}
+
+.dokuwiki .searchbox {
+    position: relative;
+}
+.dokuwiki .tools .searchbox {
+    clear: right;
+}
+[dir=rtl] .dokuwiki .tools .searchbox {
+    clear: left;
+}
+
+
+/* ---------------  tab navigation ---------------- */
+
+.dokuwiki #tab__nav {
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 800px;
+    margin-left: -400px;
+    z-index: 5;
+}
+
+.dokuwiki #tab__nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dokuwiki #tab__nav li {
+    float: left;
+    padding: 0;
+    margin: 0 10px 0 0;
+}
+[dir=rtl] .dokuwiki #tab__nav li {
+    float: right;
+    margin: 0 0 0 10px;
+}
+
+.dokuwiki #tab__nav a {
+    display: block;
+    color: __background_alt__;
+    background-color: __tab_background__;
+    /* the background gradient is in gradients.less */
+    margin: 0;
+    padding: 3px 10px 1px;
+    border: solid #5a78a4;
+    border-width: 1px 1px 0;
+    border-radius: 7px 7px 0 0;
+}
+
+.dokuwiki #tab__nav .curid a {
+    color: __text__;
+    font-weight: bolder;
+    padding: 3px 10px 2px;
+    background: #fff none;
+}
+
+
+/* ---------------  blog and page includes ---------------- */
+
+.dokuwiki div.hfeed {
+    margin-top: 20px;
+}
+
+.dokuwiki div.hfeed div.hentry {
+    margin-bottom: 40px;
+    /* background: url(images/Blog_Header.png) no-repeat top;
+        border-bottom: 1px solid __background_alt__;  */
+}
+
+.dokuwiki div.hfeed div.entry-content {
+    /* padding: 5px; */
+}
+
+.dokuwiki div.hfeed h2 {
+    border-left: 5px solid #0000FF;
+    padding-left: 5px;
+    border-bottom: 1px solid #0000FF;
+}
+
+/*overwriteing include plugin's style.css*/
+.dokuwiki div.hfeed div.inclmeta {
+    border: none;
+    padding: 0 5px 15px 0px;
+    margin: 0;
+}
+
+/*overwriteing include plugin's style.css*/
+.dokuwiki div.inclmeta .tags {
+    background: transparent url(images/tag.gif) 0px 1px no-repeat;
+    padding: 1px 0px 1px 16px;
+    font-size: 100%;
+    text-align: left;
+    float: none;
+    clear: none;
+}
+
+/* ----------------- footer ------------------ */
+
+.dokuwiki .stylefoot {
+    margin-top: 2em;
+}
+
+
+/* --------------- bottom bar ---------------- */
+.dokuwiki .bar {
+    border-top: 1px solid __border__;
+    border-bottom: 1px solid __border__;
+    background: __background_alt__;
+    clear: both;
+}
+
+.dokuwiki .bar-left {
+    float: left;
+}
+[dir=rtl] .dokuwiki .bar-left {
+    float: right;
+}
+
+.dokuwiki .bar-right {
+    float: right;
+    text-align: right;
+}
+[dir=rtl] .dokuwiki .bar-right {
+    float: left;
+    text-align: left;
+}
+
+.dokuwiki #bar__bottom {
+    padding: 0 10px 1em;
+    margin-top: 5px;
+}
+
+/* ------------- File Metadata ----------------------- */
+
+.dokuwiki div.meta {
+    clear: both;
+    color: __text_alt__;
+    font-size: 80%;
+}
+
+.dokuwiki div.user {
+    color: __text_alt__;
+    font-size: 80%;
+    float: right;
+    margin-right: 20px;
+}
+[dir=rtl] .dokuwiki div.user {
+    float: right;
+}
+
+.dokuwiki div.meta div.doc {
+    text-align: center;
+}
+
+
+/* ------------------ Additional ---------------------- */
+
+div.footerinc {
+    text-align: center;
+    margin-top: 1em;
+}
+
+div.footerinc div.license {
+    display: inline;
+}
+div.footerinc div.license img.medialeft {
+    float: none;
+}
+
+.footerinc a img {
+    opacity: 0.5;
+    border: 0;
+}
+
+.footerinc a:hover img {
+    opacity: 1;
+}
+
+
+.dokuwiki div.breadcrumbs {
+    background-color: __background__;
+    color: __text_alt__;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 80%;
+}
+[dir=rtl] .dokuwiki div.breadcrumbs {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+
+.dokuwiki div.license {
+    padding: 0.5em;
+    font-size: 90%;
+    text-align: center;
+}

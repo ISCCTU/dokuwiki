@@ -1,0 +1,340 @@
+/**
+ * DokuWiki Twenty Fifteen Template
+ *
+ * @link     https://github.com/lainme/dokuwiki-theme-twentyfifteen
+ * @author   lainme <lainme993@gmail.com>
+ * @license  GPLv2 (http://www.gnu.org/licenses/gpl.html)
+ */
+
+/*Elements*/
+a.wikilink2 {
+    color: @ini_missing;
+}
+
+div.image a,
+h1 a,
+a.media,
+a.image,
+a.diff_link,
+a.revisions_link {
+    text-decoration: none !important;
+    border: none !important;
+}
+
+li div {
+    display: inline;
+}
+
+div.table {
+    overflow: auto;
+}
+
+/*Sidebar*/
+.widget:nth-last-of-type(2) {
+    margin-bottom: 1em;
+}
+
+.widget div.li {
+    display: block;
+}
+
+.widget div.li {
+    border-top: 1px solid @ini_border;
+    padding: 0.7667em 0;
+}
+
+.widget div.li:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.widget div.li:last-child {
+    padding-bottom: 0;
+}
+
+/*Content*/
+.entry-navigation {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.entry-navigation .entry-content,
+.entry-navigation p {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.entry-content h1:first-of-type {
+    margin-top: 0;
+}
+
+.entry-content div > :last-child {
+    margin-bottom: 0;
+}
+
+/*Sitemap*/
+.dokuwiki ul.idx {
+    padding-left: 1em;
+}
+
+.dokuwiki ul.idx ul {
+    padding-left: 0em;
+}
+
+/*Diff*/
+.dokuwiki .diffoptions p {
+    clear: both;
+    float: left;
+}
+
+table.diff .diffnav select {
+    width: 98%;
+}
+
+/*Edit*/
+form.btn_secedit button {
+    float: right;
+}
+
+button.toolbutton,
+button.pickerbutton {
+    background-color: @ini_background_alt;
+    color: @ini_text_alt;
+    padding: 0.5em;
+}
+
+div.picker {
+    background-color: @ini_background_alt;
+}
+
+/*Search*/
+dl.search_results dt {
+    font-weight: normal;
+}
+
+dl.search_results dd {
+    color: @ini_text_alt;
+}
+
+.search_hit {
+    color: @ini_text;
+    background-color: __highlight__;
+}
+
+/*Table of Contents*/
+#dw__toc {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    font-size: 100%;
+}
+
+#dw__toc h3 {
+    font-size: 110%;
+    margin: 1em 1em 0 1em;
+}
+
+#dw__toc ul {
+    margin: 0 1em 0 2em;
+}
+
+#dw__toc ul ul {
+    margin: 0em;
+}
+
+#dw__toc ul li {
+    list-style: square;
+    line-height: 1.5em;
+}
+
+#dw__toc a {
+    border: 0;
+}
+
+/*Media Manager*/
+#mediamanager__page {
+    font-size: 85%;
+    min-width: 0;
+    overflow: auto;
+}
+
+#mediamanager__page .namespaces {
+    width: 30%;
+    height: auto !important;
+}
+
+#mediamanager__page .filelist {
+    width: 70%;
+    height: auto !important;
+}
+
+#mediamanager__page .file {
+    width: 100%;
+}
+
+#mediamanager__page .panelContent {
+    display: inline;
+}
+
+#mediamanager__page .filelist .rows li dt {
+    width: 14%;
+}
+
+#mediamanager__uploader .qq-uploader input[type="file"] {
+    position: relative !important;
+    font-size: 100% !important;
+    opacity: 1 !important;
+}
+
+#media__popup_content button {
+    background-color: @ini_background_alt;
+    padding: 0 0.25em 0 0.25em;
+}
+
+/*Admin*/
+div.ui-admin a {
+    border: none;
+}
+
+div.ui-admin ul {
+    margin: 0;
+}
+div.ui-admin li {
+    list-style: none;
+    margin: 0.5em 0 0.5em 0;
+}
+
+#user__manager button {
+    float: left;
+}
+
+#user__manager ul.notes {
+    padding-left: 1em;
+}
+
+#extension__manager {
+    font-size: 85%;
+}
+
+#config__manager fieldset {
+    margin: 0em;
+}
+
+#config__manager td.label {
+    width: 40%;
+}
+
+#config__manager td input.edit,
+#config__manager td select.edit,
+#config__manager td textarea.edit,
+#config__manager td .input {
+    width: 100% !important;
+}
+
+/*Other layouts*/
+div#plugin__styling.ispopup,
+div#dokuwiki__detail {
+    width: 69.7%;
+    float: right;
+}
+
+/*RTL*/
+[dir=rtl] {
+    .entry-content h1 {
+        clear: right;
+    }
+
+    .dokuwiki ul.idx {
+        padding-right: 1em;
+        padding-left: 0;
+    }
+
+    .dokuwiki ul.idx ul {
+        padding-right: 0;
+    }
+
+    form.btn_secedit button {
+        float: left;
+    }
+
+    .dokuwiki .diffoptions form,
+    .dokuwiki .diffoptions p {
+        float: right;
+    }
+
+    #dw__toc ul {
+        margin: 0 2em 0 1em;
+    }
+
+    #user__manager .medialeft {
+        float:  right;
+    }
+    #user__manager button {
+        float: right !important;
+    }
+}
+
+/*Responsive*/
+@media screen and (min-width: @ini_phone_width) and (max-width: @ini_tablet_width) {
+    .widget div.li {
+        padding: 0.7188em 0;
+    }
+}
+
+@media screen and (min-width: @ini_tablet_width) {
+    .widget div.li {
+        padding: 0.4688em 0;
+    }
+
+    #dw__toc {
+        width: 16em;
+        font-size: 80%;
+    }
+}
+
+/*Print*/
+@media print {
+    .secondary,
+    button,
+    input,
+    select,
+    textarea,
+    .site-logo,
+    .entry-navigation,
+    .entry-footer {
+        display: none;
+    }
+
+    .site-branding {
+        border-bottom: 2pt solid #ccc;
+        margin: 0 0 1em 0;
+    }
+
+    .site-branding a {
+        text-decoration: none !important;
+        border: 0 !important;
+    }
+
+    .site-branding h1 {
+        font-size: 1.5em;
+    }
+
+    .site-footer .site-info {
+        font-size: 90%;
+        text-align: right;
+        clear: both;
+        padding-top: 2pt;
+        border-top: 1pt solid #999;
+        margin-top: 10pt;
+    }
+
+    .entry-content h1 {
+        font-size: 22px;
+    }
+
+    .entry-content h1:first-of-type {
+        margin-top: 0.9231em;
+    }
+}
