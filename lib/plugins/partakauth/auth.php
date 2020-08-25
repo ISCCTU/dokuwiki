@@ -133,6 +133,7 @@ class auth_plugin_partakauth extends DokuWiki_Auth_Plugin
 
             $roleMap = [
                 'supervisor' => 'admin',
+                'admin' => 'admin',
                 'partak' => 'user',
                 'team' => 'team',
                 'board' => 'board',
