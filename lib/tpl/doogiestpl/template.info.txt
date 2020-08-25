@@ -1,0 +1,7 @@
+base     doogiestpl
+author   Anika Henke (previous author: Robert Rackl)
+email    anika@selfthinker.org
+date     2014-06-29
+name     Doogie's Template
+desc     Clean and uncluttered blue look that nicely resizes. With configurable tab navigation.
+url      https://www.dokuwiki.org/template:doogiestpl

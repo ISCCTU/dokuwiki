@@ -1,0 +1,182 @@
+CKEDITOR.dialog.add( 'tagsDialog', function ( editor )
+  {
+    var existingTags = {};
+    var lang = editor.lang.tags;
+    var tstr = "test";
+    var tags_pos = editor.tags_pos();    
+    var generateTags = function ()
+      {
+      
+        var content = editor.document.$.children[0].children[1].innerHTML.replace(/<[^<>]*>/g,'').replace(/&gt;/g,'>');
+        
+        var tagregexp = (/\{\{tag>.*?\}\}/g);
+        var matches = tagregexp.exec(content);
+        var ele = [];
+        var tagexists = function (name)
+          {
+            if (matches != null) {
+              var wordmatch = new RegExp('( |\>)'+ name.toUpperCase()+'( |\})','g');
+              for (var i = 0; i<matches.length; i++) {
+                if (wordmatch.test(matches[i].toUpperCase())) {
+                  return true;
+                }
+              }
+              return false;
+            } else {
+              return false;
+            }
+          };
+	  existingTags = editor.existing_tags();
+        var curHBox = {
+                        type: 'hbox',
+                        children: []
+                      }
+        ele[ele.length] = curHBox;
+        for (var i=0; i<existingTags.length; i++) {
+          curHBox.children[curHBox.children.length] =
+            {
+              type: 'checkbox',
+              id: existingTags[i].id,
+              label: existingTags[i].name,
+              'default': existingTags[i].name == '' ? '' : (tagexists(existingTags[i].id) ? 'checked' : ''),
+              userdef: false
+            }
+          if ( ((i % 5)==4) && ((i+1)<existingTags.length-1)) {
+            curHBox = {
+                        type: 'hbox',
+                        children: []
+                      }
+            ele[ele.length] = curHBox;
+          }
+        }
+        ele[ele.length] =
+            {
+              type: 'checkbox',
+              id: '',
+              label: '',
+              'default': '',
+              userdef: false
+            }
+
+        var tmp = ele[ele.length-1];
+        tmp.userdef = true;
+        tmp.id = 'user_def_box';
+        tmp.label = lang.customTags
+        ele[ele.length-1] =
+          {
+            type: 'vbox',
+            children: [
+                tmp,
+                {
+                    type: 'text',
+                    id: 'user_def_text',
+                },                
+            {
+                type: 'html',
+                html: lang.info
+                //'If <code>Cursor</code> is selected, the old tag syntax must be selected and it will be replaced. If there are no old tags, the the new tag(s) will  be inserted at the cursor'
+         },                         
+        {
+            type: 'radio',
+            id: 'which',
+            label: lang.radioLabel, // 'Place tags at: ',
+            items: [ [ lang.bottom, 'bottom' ], [ lang.cursor, 'cursor' ], [lang.top, 'top'] ],
+            style: 'color: green',
+            'default': tags_pos,
+            onClick: function() {            
+                //alert( 'Current value: ' + this.getValue() );
+            }
+        },                
+            ]
+          }
+         
+        return ele;
+      };
+    var d =
+      {
+        title:  lang.dlgTitle,
+        minWidth: 500,
+        minHeight: 200,
+        contents: [
+            {
+                id: 'tab-basic',
+                label: 'Settings',
+                elements: generateTags()
+            }
+        ],
+        onOk: function()
+          {
+            var dialog = this;
+            var codeB = "{{tag>";
+            var codeE = "}}";
+            var selected = "";
+            var which = 'unset';
+            var dialog = this;
+            for (var i = 0; i<existingTags.length; i++) {
+              selected += dialog.getValueOf('tab-basic',existingTags[i].id) ? existingTags[i].id+' ' : '';
+            }
+            selected += dialog.getValueOf('tab-basic','user_def_box') ? dialog.getValueOf('tab-basic','user_def_text')+' ' : '';
+            which = dialog.getValueOf('tab-basic','which') ;            
+            selected = selected.replace(/\s+$/,"");          
+            data = editor.getData();     
+            selected = "{{tag&gt;" + selected + "}}";       
+            if(which == 'cursor') {
+                 editor.insertHtml(selected);
+            }      
+            else if(which == 'top')  {
+                 editor.setData(selected+data.replace(/\{\{tag&gt;.*?\}\}/g,''));  
+            }
+            else {
+                editor.setData(data.replace(/\{\{tag&gt;.*?\}\}/g,'')+selected);  
+                }  
+             
+          },
+        onShow: function() {  
+	
+          var dialog = this;     
+          var existing ="";
+          var on_page;  //tags found in page tag markup
+          var custom_insert = "";  // tags found on page that are not in existing tags
+          for (var i = 0; i<existingTags.length; i++) {           
+              existing += dialog.getValueOf('tab-basic',existingTags[i].id) ? existingTags[i].id+' ' : '';   // check checkboxes for current tags
+            }
+     //     alert(existing  + '<');
+          var content = editor.document.$.children[0].children[1].innerHTML.replace(/<[^<>]*>/g,'').replace(/&gt;/g,'>');
+          var tagregexp = (/\{\{tag>(.*?)\}\}/g);
+          var matches = tagregexp.exec(content);
+         if(!matches) return;
+          matches[1] = matches[1].replace(/&nbsp;/g, "  ");
+          matches[1] = matches[1].replace(/\s+/g," " );
+      
+         on_page = matches[1].split(/\s/);         
+         /* Bring checkboxes up-to-date */
+          jQuery("table[class*='dialog'] :checkbox[class*='cke']").each(function( index ) {	
+                    var labelText = jQuery('label[for='+  this.id  +']').text();  
+                    var tag = labelText.match(/^[\w\-\d]+$/);                  
+                   if(tag && !on_page.includes(labelText)) {                         
+                         jQuery(this).prop('checked',false) ;
+                   }
+                   else if(tag && on_page.includes(labelText) && !jQuery(this).prop('checked')){
+                        jQuery(this).prop('checked',true) ;
+                        existing += labelText + ' ';
+                   }
+           });	
+         
+        /* Add as yet un-registered tags to list of custom tags   */        
+         for(i=0; i< on_page.length; i++) {       
+               var r= new RegExp(on_page[i]);   
+              if(!existing.match(r)) {
+                  custom_insert += on_page[i] + " ";
+              }
+         }
+           if(custom_insert) {    // add custom tags to custom tags box
+              custom_insert=custom_insert.replace(/\s+$/,"");
+              dialog.setValueOf('tab-basic','user_def_box',1) ;
+              dialog.setValueOf('tab-basic','user_def_text',custom_insert);
+           }
+           
+        }
+      };
+    return d;
+  }
+);
