@@ -124,7 +124,7 @@ class auth_plugin_partakauth extends DokuWiki_Auth_Plugin
                 NATURAL JOIN roles
                 WHERE id_user = :id_user
                 ",
-                ['id_user' => $data['id_user']]
+                ['id_user' => (int)$data['id_user']]
             );
 
             if ($groups === false) {
